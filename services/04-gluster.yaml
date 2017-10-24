@@ -1,0 +1,7 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: "gluster-server"
+spec:
+  ports:
+  - port: 1

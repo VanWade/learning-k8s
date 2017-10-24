@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-volume
+spec:
+  containers:
+    - name: cm-volume
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "/bin/sh", "-c", "ls /etc/special/" ]
+      volumeMounts:
+      - name: special-volume
+        mountPath: /etc/special
+  volumes:
+  - name: special-volume
+    configMap: 
+      name: special-config
+  restartPolicy: Never
+# special-config {special.key:very}
+# /etc/special/special.key very

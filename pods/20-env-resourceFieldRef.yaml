@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-resource-fieldref-pod
+spec:
+  containers:
+    - name: env-resource-fieldref-con
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "/bin/sh" ]
+      args: 
+      - "-c"
+      - "printenv CPU_LIMIT"
+      env:
+      - name: CPU_LIMIT
+        valueFrom:
+          resourceFieldRef:
+            containerName: env-resource-fieldref-con
+            resource: limits.cpu
+      resources:
+        limits: 
+          cpu: 500m
+ 
+  restartPolicy: Never
+# env value from pod field

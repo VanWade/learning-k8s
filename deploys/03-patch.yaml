@@ -1,0 +1,9 @@
+spec:
+  template: # create pods using pod definition in this template
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379
+

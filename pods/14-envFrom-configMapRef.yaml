@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-envfromonecm
+spec:
+  containers:
+    - name: cm-envfromonecm
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "/bin/sh", "-c", "env" ]
+      envFrom:
+      - configMapRef:
+          name: student-info
+      # student-info {name:xiaoxi,age:29}
+  restartPolicy: Never

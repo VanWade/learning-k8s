@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle
+spec:
+  restartPolicy: Never
+  containers:
+  - name: lifecycle
+    image: bitnami/apache
+    lifecycle:
+      postStart:
+        httpGet:
+          path: /
+          port: 80
+      preStop:
+        exec:
+          command: ["cat","/etc/hosts"]

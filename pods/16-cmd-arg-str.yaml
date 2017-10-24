@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd-arg-str
+spec:
+  containers:
+    - name: cmd-arg-str
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "printenv" ]
+      args: ["HOSTNAME"]
+  restartPolicy: Never
+# args are strings

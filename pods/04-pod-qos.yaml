@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos
+spec:
+  restartPolicy: Never
+  containers:
+  - name: qos
+    image: busybox
+    resources:
+      limits:
+        memory: "200Mi"
+        cpu: "100m"
+      requests:
+        memory: "100Mi"

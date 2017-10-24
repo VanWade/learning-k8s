@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd-arg-env
+spec:
+  containers:
+    - name: cmd-arg-env
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "/bin/echo" ]
+      args: ["$(student_name)"]
+      env:
+      - name: student_name
+        valueFrom:
+          configMapKeyRef:
+            name: student-info
+            key: name
+  restartPolicy: Never
+# args are env variables

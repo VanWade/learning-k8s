@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-downwardapi-pod
+spec:
+  containers:
+    - name: volume-downwardapi-con
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "cat" ]
+      args: 
+      - "/etc/limits_cpu"
+      volumeMounts:
+      - name: downwardapi
+        mountPath: /etc
+      resources:
+        limits: 
+          cpu: 500m
+  volumes:
+  - name: downwardapi
+    downwardAPI:
+      items:
+      - path: limits_cpu
+        resourceFieldRef:
+          containerName: volume-downwardapi-con
+          resource: limits.cpu
+ 
+  restartPolicy: Never
+# env value from pod field

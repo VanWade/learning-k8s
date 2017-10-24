@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-fieldref
+spec:
+  containers:
+    - name: env-fieldref
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: [ "/bin/sh" ]
+      args: 
+      - "-c"
+      - "printenv PODIP"
+      env:
+      - name: PODIP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+ 
+  restartPolicy: Never
+# env value from pod field
